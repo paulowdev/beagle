@@ -98,6 +98,7 @@
 		98E4974B249E9B830053DB87 /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4974A249E9B830053DB87 /* TextInputTests.swift */; };
 		98E717AA248EAF7500968F2A /* BeagleNavigatorAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E717A9248EAF7500968F2A /* BeagleNavigatorAnimationTests.swift */; };
 		98FC964C23EA518600A8CEC8 /* ObservableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FC964B23EA518600A8CEC8 /* ObservableTests.swift */; };
+		A01CB6E4254C4C5A00997749 /* BeagleControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01CB6E3254C4C5900997749 /* BeagleControllerSpy.swift */; };
 		A020A4D124FFDDC200B3DF55 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A020A4D024FFDDC100B3DF55 /* ListViewController.swift */; };
 		A024CF0F24991E42009BB92D /* UIView+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024CF0E24991E41009BB92D /* UIView+Style.swift */; };
 		A024CF1124991E4F009BB92D /* UIView+StyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024CF1024991E4F009BB92D /* UIView+StyleTests.swift */; };
@@ -355,6 +356,7 @@
 		98E4974A249E9B830053DB87 /* TextInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTests.swift; sourceTree = "<group>"; };
 		98E717A9248EAF7500968F2A /* BeagleNavigatorAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeagleNavigatorAnimationTests.swift; sourceTree = "<group>"; };
 		98FC964B23EA518600A8CEC8 /* ObservableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTests.swift; sourceTree = "<group>"; };
+		A01CB6E3254C4C5900997749 /* BeagleControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeagleControllerSpy.swift; sourceTree = "<group>"; };
 		A020A4D024FFDDC100B3DF55 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A024CF0E24991E41009BB92D /* UIView+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Style.swift"; sourceTree = "<group>"; };
 		A024CF1024991E4F009BB92D /* UIView+StyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+StyleTests.swift"; sourceTree = "<group>"; };
@@ -1155,6 +1157,7 @@
 			children = (
 				C0E569142476F026003D413F /* BeaglePrefetchHelpingSpy.swift */,
 				C0E569162476F047003D413F /* ThemeSpy.swift */,
+				A01CB6E3254C4C5900997749 /* BeagleControllerSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -1944,6 +1947,7 @@
 				25B7472A24EEC7D400AFE60A /* OperationEvaluationTests.swift in Sources */,
 				93BFE32F24A13F34009838CE /* DynamicObjectTests.swift in Sources */,
 				E5A77643237DC17D002F5515 /* FormSubmitTests.swift in Sources */,
+				A01CB6E4254C4C5A00997749 /* BeagleControllerSpy.swift in Sources */,
 				E516E61023705BED006620B1 /* BeagleViewBuilderTests.swift in Sources */,
 				93C69F2B24A4D84D00818305 /* UIView+ContextTests.swift in Sources */,
 				25CDD46524E55EE600CC49CB /* ValueEvaluateTest.swift in Sources */,

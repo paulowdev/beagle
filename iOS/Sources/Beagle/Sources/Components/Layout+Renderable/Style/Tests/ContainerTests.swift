@@ -131,41 +131,5 @@ final class ContainerTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssert(controllerSpy.didCalledExecute)
     }
-}
-
-class BeagleControllerSpy: BeagleController {
-    
-    var dependencies: BeagleDependenciesProtocol = Beagle.dependencies
-    var serverDrivenState: ServerDrivenState = .finished
-    var screenType: ScreenType = .declarativeText("")
-    var screen: Screen?
-    
-    var expectation: XCTestExpectation?
-    
-    var bindings: [() -> Void] = []
-    
-    func execute(action: RawAction, sender: Any) { }
-    
-    private(set) var didCalledExecute = false
-    private(set) var lastImplicitContext: Context?
-    
-    func addOnInit(_ onInit: [RawAction], in view: UIView) {
-        execute(actions: onInit, origin: view)
-    }
-    
-    func addBinding<T: Decodable>(expression: ContextExpression, in view: UIView, update: @escaping (T?) -> Void) {
-        // Intentionally unimplemented...
-    }
-    
-    func execute(actions: [RawAction]?, origin: UIView) {
-        didCalledExecute = true
-        expectation?.fulfill()
-    }
-    
-    func execute(actions: [RawAction]?, with contextId: String, and contextValue: DynamicObject, origin: UIView) {
-        lastImplicitContext = Context(id: contextId, value: contextValue)
-        didCalledExecute = true
-        expectation?.fulfill()
-    }
     
 }
