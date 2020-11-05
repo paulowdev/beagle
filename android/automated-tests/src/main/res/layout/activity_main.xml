@@ -22,4 +22,47 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
+    <ScrollView
+        android:id="@+id/scrollView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/MainScreenLabel"
+                style="@style/DesignSystem.Text.helloWord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert the BFF URL and press GO"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#3C3C3C"
+                android:textSize="10pt" />
+
+            <EditText
+                android:id="@+id/TextBffUrl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#F1EBEA"
+                android:hint="Type the URL here"
+                android:inputType="textUri"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+            <Button
+                android:id="@+id/SendBffRequestButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="sendBffRequest"
+                android:text="Go" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

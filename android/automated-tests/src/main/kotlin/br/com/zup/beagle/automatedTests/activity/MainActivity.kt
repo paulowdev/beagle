@@ -17,6 +17,8 @@
 package br.com.zup.beagle.automatedTests.activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import br.com.zup.beagle.android.utils.newServerDrivenIntent
 import br.com.zup.beagle.android.view.ScreenRequest
@@ -31,14 +33,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        /*
         val url = bffUrl()
         if (url != null) {
             val intent = this.newServerDrivenIntent<AppBeagleActivity>(ScreenRequest(url))
             startActivity(intent)
             finish()
-        }
+        }*/
     }
 
     fun bffUrl() = intent.extras?.getString(BFF_URL_KEY) ?: "http://10.0.2.2:8080/navigate-actions"
+
+    fun sendBffRequest(button: View) {
+        val urlTextElement = findViewById<View>(R.id.TextBffUrl) as EditText
+        //startActivity(urlTextElement.text.toString())
+
+        val intent = this.newServerDrivenIntent<AppBeagleActivity>(ScreenRequest(urlTextElement.text.toString()))
+        startActivity(intent)
+        finish()
+
+    }
 }
