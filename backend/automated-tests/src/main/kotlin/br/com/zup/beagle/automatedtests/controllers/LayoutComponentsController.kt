@@ -27,11 +27,11 @@ import br.com.zup.beagle.automatedtests.constants.WEB_VIEW_ENDPOINT
 import br.com.zup.beagle.automatedtests.builders.SimpleFormScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.TextInputScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.TabBarScreenBuilder
-import br.com.zup.beagle.automatedtests.builders.WebViewScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.LazyComponentScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.ImageRemoteScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.ActionScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.PageViewTwoScreenBuilder
+import br.com.zup.beagle.automatedtests.builders.WebviewScreenBuilder
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -50,7 +50,7 @@ class LayoutComponentsController {
     fun getTabBarScreen() = TabBarScreenBuilder.build()
 
     @GetMapping(WEB_VIEW_ENDPOINT)
-    fun getWebViewScreen() = WebViewScreenBuilder.build()
+    fun getWebViewScreen() = WebviewScreenBuilder.build()
 
     @GetMapping(LAZY_COMPONENT_ENDPOINT)
     fun getLazyComponentScreen() = LazyComponentScreenBuilder.build()
