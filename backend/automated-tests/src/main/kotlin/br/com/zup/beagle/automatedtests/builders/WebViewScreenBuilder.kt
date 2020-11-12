@@ -16,8 +16,14 @@
 
 package br.com.zup.beagle.automatedtests.builders
 
+import br.com.zup.beagle.core.Style
+import br.com.zup.beagle.ext.applyStyle
 import br.com.zup.beagle.widget.action.Alert
 import br.com.zup.beagle.widget.context.ContextData
+import br.com.zup.beagle.widget.core.EdgeValue
+import br.com.zup.beagle.widget.core.Size
+import br.com.zup.beagle.widget.core.UnitType
+import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
@@ -29,10 +35,23 @@ import br.com.zup.beagle.widget.ui.WebView
 object WebViewScreenBuilder {
     fun build() = Screen(
         child = Container(
-            context = ContextData(id ="WebViewContext", value = ""),
+            context = ContextData(id ="WebViewContext", value = "https://www.google.com.br"),
             children = listOf(
                 Text("WebView screen"),
-                WebView(url = "https://www.google.com.br")
+
+                Container(children = listOf(
+                    Text("WebViewHardcoded"),
+                    WebView(url = "https://www.google.com.br")
+                )).applyStyle(style = Style(
+                    margin = EdgeValue(top = UnitValue(20.0, UnitType.REAL)),
+                    size = Size(height = UnitValue(300.0, UnitType.REAL)))),
+
+                Container(children = listOf(
+                    Text("WebViewExpression"),
+                    WebView(url = "@{WebViewContext}")
+                )).applyStyle(style = Style(
+                    margin = EdgeValue(top = UnitValue(20.0, UnitType.REAL)),
+                    size = Size(height = UnitValue(300.0, UnitType.REAL))))
             )
         )
     )
