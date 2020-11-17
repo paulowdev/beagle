@@ -42,9 +42,9 @@ object PageViewScreenBuilder : ScreenBuilder {
                     PageView(
                         context = ContextData("pageViewContext", ""),
                         children = listOf(
-                            Text("pageOne"),
-                            Text("pageTwo"),
-                            Text("pageThree")
+                            Text("Page 1"),
+                            Text("Page 2"),
+                            Text("Page 3")
                         ),
                         onPageChange = listOf(
                             SetContext(contextId = "currentPage", "@{onPageChange}")
@@ -60,8 +60,7 @@ object PageViewScreenBuilder : ScreenBuilder {
                         SetContext(
                             contextId = "currentPage",
                             value = 0
-                        ),
-                        Alert(message = "@{currentPage}")
+                        )
                     )
                 ),
                 Button(
@@ -70,8 +69,7 @@ object PageViewScreenBuilder : ScreenBuilder {
                         SetContext(
                             contextId = "currentPage",
                             value = 1
-                        ),
-                        Alert(message = "@{currentPage}")
+                        )
                     )
                 ),
                 Button(
@@ -80,10 +78,10 @@ object PageViewScreenBuilder : ScreenBuilder {
                         SetContext(
                             contextId = "currentPage",
                             value = 2
-                        ),
-                        Alert(message = "@{currentPage}")
+                        )
                     )
-                )
+                ),
+                Text("@{currentPage}")
             )
         )
     )

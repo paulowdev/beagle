@@ -54,7 +54,7 @@ enum ScreenElements: String {
     case TAB_4_TEXT_2 = "This is Tab4's second text"
 
     //PageView Screen
-    case PAGEVIEW_SCREEN_HEADER = "Beagle PageView"
+    case PAGEVIEW_SCREEN_HEADER = "PageView Screen"
     case PAGE_1_TEXT = "Page 1"
     case PAGE_2_TEXT = "Page 2"
     case PAGE_3_TEXT = "Page 3"

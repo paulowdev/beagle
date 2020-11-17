@@ -19,9 +19,35 @@ Feature: PageView Component Validation
 
     As a Beagle developer/user
     I'd like to make sure my pageView component works as expected
-    In order to guarantee that my application never fails
+    
+    Background:
+        Given the Beagle application did launch with the pageView on screen
 
+    Scenario: PageView 01 - PageView component renders correctly
+        Then checks that "Page 1", "Page 2" and "Page 3" are rendered correctly.
 
-    Scenario: PageView 01 - PageView component renders text attribute correctly
-        Given the app did load pageview screen
-        Then pageview should render correctly
+    Scenario: PageView 02 - PageView onPageChange runs correctly
+        Then checks that "0", "1" and "2" texts are displayed.
+        
+    Scenario: PageView 03 - PageView page set in onCurrentPage is displayed
+        Then checks that the page set in onCurrentPage attribute is displayed.
+        
+    Scenario Outline: PageView 04 - PageView change the page via the onCurrentPage attribute
+        When I press a button with the "<buttonTitle>" title
+        Then the page with the "<name>" name should appear on the screen
+
+        Examples:
+        |         buttonTitle             |               name                   |
+        |   SetCurrentPageToPageThree     |    Page 3                            |
+        |   SetCurrentPageToPageOne       |    Page 1                            |
+        |   SetCurrentPageToPageTwo       |    Page 2                            |
+        
+    Scenario Outline: PageView 05 - PageView checks the context set on PageView
+        When I press a button with the "<buttonTitle>" title
+        Then the label with the "<name>" name should appear on the screen
+
+        Examples:
+        |         buttonTitle             |               name                   |
+        |   SetCurrentPageToPageOne       |    0                                 |
+        |   SetCurrentPageToPageTwo       |    1                                 |
+        |   SetCurrentPageToPageThree     |    2                                 |

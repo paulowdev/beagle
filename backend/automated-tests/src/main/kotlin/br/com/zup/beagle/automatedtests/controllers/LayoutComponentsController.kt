@@ -19,7 +19,6 @@ package br.com.zup.beagle.automatedtests.controllers
 import br.com.zup.beagle.automatedtests.constants.ACTION_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.IMAGE_REMOTE_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.LAZY_COMPONENT_ENDPOINT
-import br.com.zup.beagle.automatedtests.constants.PAGEVIEW_TWO_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.SIMPLE_FORM_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.TAB_BAR_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.TEXT_INPUT_ENDPOINT
@@ -37,8 +36,6 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class LayoutComponentsController {
-
-
     @GetMapping(SIMPLE_FORM_ENDPOINT)
     fun getSimpleFormScreen() = SimpleFormScreenBuilder.build()
 
@@ -59,8 +56,4 @@ class LayoutComponentsController {
 
     @GetMapping(ACTION_ENDPOINT)
     fun getActionScreen() = ActionScreenBuilder.build()
-
-    @GetMapping(PAGEVIEW_TWO_ENDPOINT)
-    fun getPageViewTwoScreen() = PageViewTwoScreenBuilder.build()
-
 }
