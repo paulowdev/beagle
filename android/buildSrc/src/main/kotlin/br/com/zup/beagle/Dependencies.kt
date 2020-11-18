@@ -33,7 +33,6 @@ class Dependencies : Plugin<Project> {
         const val internalProcessor = ":internal-processor"
         const val androidAnnotation = ":android-annotation"
         const val preview = ":preview"
-        const val commonAnnotation = ":annotation"
         const val commonProcessorSharedCode = ":processor-shared-code"
     }
 
@@ -88,6 +87,7 @@ class Dependencies : Plugin<Project> {
         const val incap = "0.3"
 
         const val cucumber = "1.2.6"
+        const val kotlinCompileTesting = "1.3.1"
     }
 
     object GeneralNames {
@@ -152,6 +152,8 @@ class Dependencies : Plugin<Project> {
         const val testRules = "androidx.test:rules:${Versions.testExt}"
         const val cucumberAndroid = "info.cukes:cucumber-android:${Versions.cucumber}"
         const val cucumberPicocontainer = "info.cukes:cucumber-picocontainer:${Versions.cucumber}"
+
+        const val kotlinCompileTesting = "com.github.tschuchortdev:kotlin-compile-testing:${Versions.kotlinCompileTesting}"
     }
 
 }
