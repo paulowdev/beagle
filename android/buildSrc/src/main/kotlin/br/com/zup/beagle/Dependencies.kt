@@ -33,7 +33,6 @@ class Dependencies : Plugin<Project> {
         const val internalProcessor = ":internal-processor"
         const val androidAnnotation = ":android-annotation"
         const val preview = ":preview"
-        const val commonAnnotation = ":annotation"
         const val commonProcessorSharedCode = ":processor-shared-code"
     }
 
@@ -53,6 +52,7 @@ class Dependencies : Plugin<Project> {
         const val kotlinCoroutines = "1.3.9"
 
         const val kotlinPoet = "1.7.1"
+        const val okio = "2.9.0"
 
         const val appcompat = "1.2.0"
         const val viewModel = "2.2.0"
@@ -88,6 +88,7 @@ class Dependencies : Plugin<Project> {
         const val incap = "0.3"
 
         const val cucumber = "1.2.6"
+        const val kotlinCompileTesting = "1.3.1"
     }
 
     object GeneralNames {
@@ -100,14 +101,15 @@ class Dependencies : Plugin<Project> {
         const val autoService = "com.google.auto.service:auto-service:${Versions.googleAutoService}"
         const val incap = "net.ltgt.gradle.incap:incap:${Versions.incap}"
         const val incapPrcessor = "net.ltgt.gradle.incap:incap-processor:${Versions.incap}"
+
+        const val kotlinPoet = "com.squareup:kotlinpoet:${Versions.kotlinPoet}"
+        const val okio = "com.squareup.okio:okio:${Versions.okio}"
     }
 
     object GeneralLibraries {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
         const val kotlinCoroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
-
-        const val kotlinPoet = "com.squareup:kotlinpoet:${Versions.kotlinPoet}"
 
         const val soLoader = "com.facebook.soloader:soloader:${Versions.soLoader}"
 
@@ -152,6 +154,8 @@ class Dependencies : Plugin<Project> {
         const val testRules = "androidx.test:rules:${Versions.testExt}"
         const val cucumberAndroid = "info.cukes:cucumber-android:${Versions.cucumber}"
         const val cucumberPicocontainer = "info.cukes:cucumber-picocontainer:${Versions.cucumber}"
+
+        const val kotlinCompileTesting = "com.github.tschuchortdev:kotlin-compile-testing:${Versions.kotlinCompileTesting}"
     }
 
 }
