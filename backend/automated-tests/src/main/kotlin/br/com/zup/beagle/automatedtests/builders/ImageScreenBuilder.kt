@@ -32,22 +32,6 @@ import br.com.zup.beagle.widget.ui.Text
 
 object ImageScreenBuilder {
      fun build() = Screen(
-        navigationBar = NavigationBar(
-            title = "Beagle Image",
-            showBackButton = true,
-            navigationBarItems = listOf(
-                NavigationBarItem(
-                    text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
-                        title = "Image",
-                        message = "This widget will define a image view natively using the server driven " +
-                            "information received through Beagle.",
-                        labelOk = "OK"
-                    )
-                )
-            )
-        ),
         child = ScrollView(
             scrollDirection = ScrollAxis.VERTICAL,
             children = listOf(createText("Image"), Image(Local.both(LOGO_BEAGLE_URL, LOGO_BEAGLE))) +
