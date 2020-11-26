@@ -16,12 +16,10 @@
 
 package br.com.zup.beagle.automatedTests.screenshotTests
 
-import androidx.test.rule.ActivityTestRule
-import br.com.zup.beagle.automatedTests.activity.AppBeagleActivity
-import br.com.zup.beagle.automatedTests.utils.TestUtils
+import androidx.test.core.app.ActivityScenario
+import br.com.zup.beagle.automatedTests.activity.MainActivity
+import com.karumi.shot.ActivityScenarioUtils.waitForActivity
 import com.karumi.shot.ScreenshotTest
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 
@@ -32,18 +30,23 @@ import org.junit.Test
  */
 class ExampleScreenshotTest: ScreenshotTest {
 
-    @get:Rule
-    var activityTestRule: ActivityTestRule<AppBeagleActivity> = ActivityTestRule(
-        AppBeagleActivity::class.java)
-
-    @Before
-    fun setup() {
-        TestUtils.startBeagleActivity(activityTestRule,"http://10.0.2.2:8080/button" )
-    }
-
+//    @get:Rule
+//    var activityTestRule: ActivityTestRule<AppBeagleActivity> = ActivityTestRule(
+//        AppBeagleActivity::class.java)
+//
+//    @Before
+//    fun setup() {
+//        TestUtils.startBeagleActivity(activityTestRule,"http://10.0.2.2:8080/button" )
+//    }
+//
+//    @Test
+//    fun testButtonUrlLoading() {
+//        compareScreenshot(activityTestRule.activity)
+//    }
     @Test
-    fun testButtonUrlLoading() {
-        compareScreenshot(activityTestRule.activity)
-    }
+    fun theActivityIsShownProperly() {
+        val activity = ActivityScenario.launch(MainActivity::class.java).waitForActivity()
+        compareScreenshot(activity)
+}
 
 }
