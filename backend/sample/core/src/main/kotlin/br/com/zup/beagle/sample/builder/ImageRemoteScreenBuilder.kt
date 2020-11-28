@@ -66,7 +66,7 @@ class ImageRemoteScreenBuilder(private val imagePath: String) : ScreenBuilder {
     private fun buildImage(title: String, mode: ImageContentMode? = null) = Container(
         children = listOf(
             buildText(title),
-            Image(Remote(this.imagePath), mode).applyStyle(Style(
+            Image(Remote("https://i.pinimg.com/564x/8a/2d/80/8a2d80b70dfd531befe563db81017331.jpg"), mode).applyStyle(Style(
                 flex = Flex(
                     alignSelf = AlignSelf.CENTER
                 ),

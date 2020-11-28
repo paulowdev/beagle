@@ -24,11 +24,13 @@ import br.com.zup.beagle.automatedtests.constants.TEXT_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.TOUCHABLE_ENDPOINT
 import br.com.zup.beagle.automatedtests.builders.ButtonScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.ConditionalScreenBuilder
+import br.com.zup.beagle.automatedtests.builders.ImageIssueScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.ImageScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.TextScreenBuilder
 import br.com.zup.beagle.automatedtests.builders.TouchableScreenBuilder
 import br.com.zup.beagle.automatedtests.constants.ADD_CHILDREN_ENDPOINT
 import br.com.zup.beagle.automatedtests.constants.CONDITIONAL_ENDPOINT
+import br.com.zup.beagle.automatedtests.constants.SCREEN_IMAGE_ISSUE_ENDPOINT
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -37,6 +39,9 @@ class SimpleComponentsController {
 
     @GetMapping(SCREEN_IMAGE_ENDPOINT)
     fun getImageScreen() = ImageScreenBuilder.build()
+
+    @GetMapping(SCREEN_IMAGE_ISSUE_ENDPOINT)
+    fun getImageIssueScreen() = ImageIssueScreenBuilder.build()
 
     @GetMapping(SCREEN_BUTTON_ALIGN_CENTER_ENDPOINT)
     fun getButtonScreenAlignCenter() = ButtonScreenBuilder.buildButtonAlignCenter()
