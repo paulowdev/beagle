@@ -35,6 +35,12 @@ import br.com.zup.beagle.widget.ui.ImagePath
 import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
 
+val FIT_CENTER = ImageContentMode.FIT_CENTER
+val CENTER_CROP = ImageContentMode.CENTER_CROP
+val CENTER = ImageContentMode.CENTER
+val FIT_XY = ImageContentMode.FIT_XY
+val mode = CENTER_CROP
+
 const val TEXT_VIEW_BACKGROUND_COLOR = "#A9A9A9"
 const val IMAGE_VIEW_BACKGROUND_COLOR = "#D5D5D5"
 const val CONTAINER_BACKGROUND_COLOR = "#D5FFD5"
@@ -52,36 +58,41 @@ object ImageIssueScreenBuilder {
                 Text(text = "Image Issue Screen"),
                 imagePathRemote(
                     title= "with HEIGHT and WIDTH set",
-                    Size(width = 120.unitReal(),height = 120.unitReal())
+                    Size(width = 120.unitReal(),height = 120.unitReal()),
+                    mode = mode
                 ),
                 imagePathRemote(
-                    title= "with NO SIZE set"
+                    title= "with NO SIZE set",
+                    mode = mode
                 ),
                 imagePathRemote(
                     title= "with ONLY WIDTH set",
-                    Size(width = 120.unitReal())
+                    Size(width = 120.unitReal()),
+                    mode = mode
                 ),
                 imagePathRemote(
-                    title= "with with WIDTH BIGGER than parent view",
-                    Size(width = 1200.unitReal(), height = 120.unitReal())
+                    title= "with WIDTH BIGGER than parent view",
+                    Size(width = 1200.unitReal(), height = 120.unitReal()),
+                    mode = mode
                 ),
                 imagePathRemote(
                     title= "with WIDTH set as UnitPercent",
-                    Size(width = 100.unitPercent())
+                    Size(width = 100.unitPercent()),
+                    mode = mode
                 )
             )
         )
     )
 
-    private fun imagePathRemote(title: String, size:Size? = null) = Container(
+    private fun imagePathRemote(title: String, size:Size? = null, mode:ImageContentMode? = null) = Container(
         children = listOf(
             Text("Remote Image $title").applyStyle(Style(padding = EdgeValue(vertical = 5.unitReal()), backgroundColor = TEXT_VIEW_BACKGROUND_COLOR)),
-            Image(ImagePath.Remote(IMAGE_REMOTE_URL)
+            Image(mode = mode, path = ImagePath.Remote(IMAGE_REMOTE_URL)
             ).applyStyle(Style(
                 size = size)
             ),
             Text("Local Image $title as reference with the same styles to rule any faulty styles out"),
-            Image(Local.justMobile("imageBeagle")
+            Image(mode = mode, path = Local.justMobile("imageBeagle")
             ).applyStyle(Style(
                 backgroundColor = IMAGE_VIEW_BACKGROUND_COLOR,
                 size = size,
