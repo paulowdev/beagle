@@ -41,8 +41,8 @@ const val CONTAINER_BACKGROUND_COLOR = "#D5FFD5"
 const val IMAGE_REMOTE_URL = "https://i.pinimg.com/564x/8a/2d/80/8a2d80b70dfd531befe563db81017331.jpg"
 
 //NOTICE
-//Below all remote images there is a local image got from the front view to validate the image behaviour with
-//styles and rule any style issue out of image issues
+//All remote images have a local image rendered just below then got from the front view to validate
+// the image behaviour with styles and rule any style issue out of image issues
 
 object ImageIssueScreenBuilder {
     fun build() = Screen(
