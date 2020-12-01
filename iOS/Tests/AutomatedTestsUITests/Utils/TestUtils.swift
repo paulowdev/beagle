@@ -18,9 +18,12 @@ import Foundation
 
 class TestUtils {
     
-    static func launchBeagleApplication(url: String) -> XCUIApplication {
+    static func launchBeagleApplication(url: String, withAnimations: Bool = true) -> XCUIApplication {
         let application = XCUIApplication()
         application.launchEnvironment["InitialUrl"] = url
+        if !withAnimations {
+            application.launchArguments.append("--noAnimations")
+        }
         application.launch()
         return application
     }

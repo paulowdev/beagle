@@ -292,6 +292,12 @@ extension ListViewUIComponent: UICollectionViewDataSource {
 
 extension ListViewUIComponent: UICollectionViewDelegateFlowLayout {
     
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        if !listViewDecelerates {
+            scrollView.setContentOffset(scrollView.contentOffset, animated: false)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = collectionView.frame.size
         guard let items = items, indexPath.item < items.count else {
@@ -332,3 +338,6 @@ extension ListViewUIComponent: UICollectionViewDelegateFlowLayout {
         executeOnScrollEndIfNeeded()
     }
 }
+
+var listViewDecelerates = true
+var listViewBounces = true

@@ -30,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let environment = ProcessInfo.processInfo.environment
         let url = environment[AppDelegate.InitialUrlEnvironmentKey] ?? "/set-context"
         let beagleScreen = Beagle.screen(.remote(.init(url: url)), controllerId: "CustomBeagleNavigation")
+        
+//        if CommandLine.arguments.contains("--noAnimations") {
+//            UIView.setAnimationsEnabled(false)
+//        UIScrollView.DecelerationRate
+        
+//        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = beagleScreen
         window?.makeKeyAndVisible()

@@ -45,6 +45,9 @@ final class ListViewController: UIViewController {
         )
         collection.backgroundColor = .clear
         collection.translatesAutoresizingMaskIntoConstraints = true
+        if !listViewBounces {
+            collection.bounces = false
+        }
         return collection
     }()
     
