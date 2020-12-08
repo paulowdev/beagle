@@ -20,10 +20,7 @@ import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.applyStyle
 import br.com.zup.beagle.ext.unitPercent
 import br.com.zup.beagle.ext.unitReal
-import br.com.zup.beagle.widget.context.ContextData
-import br.com.zup.beagle.widget.core.AlignSelf
 import br.com.zup.beagle.widget.core.EdgeValue
-import br.com.zup.beagle.widget.core.Flex
 import br.com.zup.beagle.widget.core.ImageContentMode
 import br.com.zup.beagle.widget.core.ScrollAxis
 import br.com.zup.beagle.widget.core.Size
@@ -39,12 +36,12 @@ val FIT_CENTER = ImageContentMode.FIT_CENTER
 val CENTER_CROP = ImageContentMode.CENTER_CROP
 val CENTER = ImageContentMode.CENTER
 val FIT_XY = ImageContentMode.FIT_XY
-val mode = CENTER_CROP
+val mode = null
 
 const val TEXT_VIEW_BACKGROUND_COLOR = "#A9A9A9"
 const val IMAGE_VIEW_BACKGROUND_COLOR = "#D5D5D5"
 const val CONTAINER_BACKGROUND_COLOR = "#D5FFD5"
-const val IMAGE_REMOTE_URL = "https://i.pinimg.com/564x/8a/2d/80/8a2d80b70dfd531befe563db81017331.jpg"
+const val IMAGE_REMOTE_URL = "https://i.pinimg.com/originals/42/b9/d2/42b9d209f4008c07c30848ae98ed7845.jpg"
 
 //NOTICE
 //All remote images have a local image rendered just below then got from the front view to validate
@@ -58,7 +55,7 @@ object ImageIssueScreenBuilder {
                 Text(text = "Image Issue Screen"),
                 imagePathRemote(
                     title= "with HEIGHT and WIDTH set",
-                    Size(width = 120.unitReal(),height = 120.unitReal()),
+                    Size(width = 100.unitReal(),height = 100.unitReal()),
                     mode = mode
                 ),
                 imagePathRemote(
@@ -66,17 +63,38 @@ object ImageIssueScreenBuilder {
                     mode = mode
                 ),
                 imagePathRemote(
-                    title= "with ONLY WIDTH set",
-                    Size(width = 120.unitReal()),
+                    title= "with ONLY WIDTH set and width is smaller than image size",
+                    Size(width = 100.unitReal()),
+                    mode = mode
+                ),
+                imagePathRemote(
+                    title= "with ONLY WIDTH set and width is bigger than image size",
+                    Size(width = 600.unitReal()),
+                    mode = mode
+                ),
+                imagePathRemote(
+                    title= "with ONLY HEIGHT set and height is smaller than image size",
+                    Size(width = 150.unitReal()),
+                    mode = mode
+                ),
+
+                imagePathRemote(
+                    title= "with ONLY HEIGHT set and height is bigger than image size",
+                    Size(width = 600.unitReal()),
                     mode = mode
                 ),
                 imagePathRemote(
                     title= "with WIDTH BIGGER than parent view",
-                    Size(width = 1200.unitReal(), height = 120.unitReal()),
+                    Size(width = 700.unitReal()),
                     mode = mode
                 ),
                 imagePathRemote(
-                    title= "with WIDTH set as UnitPercent",
+                    title= "with WIDTH set as UnitPercent = 30%",
+                    Size(width = 30.unitPercent()),
+                    mode = mode
+                ),
+                imagePathRemote(
+                    title= "with WIDTH set as UnitPercent = 100%",
                     Size(width = 100.unitPercent()),
                     mode = mode
                 )
@@ -89,6 +107,7 @@ object ImageIssueScreenBuilder {
             Text("Remote Image $title").applyStyle(Style(padding = EdgeValue(vertical = 5.unitReal()), backgroundColor = TEXT_VIEW_BACKGROUND_COLOR)),
             Image(mode = mode, path = ImagePath.Remote(IMAGE_REMOTE_URL)
             ).applyStyle(Style(
+                backgroundColor = IMAGE_VIEW_BACKGROUND_COLOR,
                 size = size)
             ),
             Text("Local Image $title as reference with the same styles to rule any faulty styles out"),
