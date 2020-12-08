@@ -60,13 +60,12 @@ class MainViewController: UIViewController {
         goButton.addTarget(self, action:#selector(goButtonClicked), for: .touchUpInside)
         return goButton
     }()
-    
+
     @objc func goButtonClicked() {
         let url = textField.text ?? ""
         let viewController =  BeagleScreenViewController(.remote(.init(url: url)))
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
 }
 
 extension MainViewController: ViewLayoutHelper {
