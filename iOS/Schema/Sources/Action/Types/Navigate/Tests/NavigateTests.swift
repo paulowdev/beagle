@@ -76,6 +76,7 @@ final class NavigateTests: XCTestCase {
         let action: Navigate = try actionFromString("""
         {
             "_beagleAction_": "beagle:resetstack",
+            "controllerId": "my-controller-id",
             "route": {
                 "url": "schema://path"
             }
@@ -84,12 +85,15 @@ final class NavigateTests: XCTestCase {
         
         _assertInlineSnapshot(matching: action, as: .dump, with: """
         ▿ Navigate
-          ▿ resetStack: Route
-            ▿ remote: NewPath
-              - fallback: Optional<Screen>.none
-              - shouldPrefetch: false
-              ▿ url: Expression<String>
-                - value: "schema://path"
+          ▿ resetStack: (2 elements)
+            ▿ .0: Route
+              ▿ remote: NewPath
+                - fallback: Optional<Screen>.none
+                - shouldPrefetch: false
+                ▿ url: Expression<String>
+                  - value: "schema://path"
+            ▿ controllerId: Optional<String>
+              - some: "my-controller-id"
         """)
     }
     
