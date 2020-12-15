@@ -41,7 +41,7 @@ import java.util.LinkedList
 
 internal class ListViewHolder(
     itemView: View,
-    private val template: ServerDrivenComponent,
+    template: ServerDrivenComponent,
     private val serializer: BeagleSerializer,
     private val listViewModels: ListViewModels,
     private val jsonTemplate: String,
@@ -54,7 +54,6 @@ internal class ListViewHolder(
     private val directNestedRecyclers = mutableListOf<RecyclerView>()
     private val directNestedImageViews = mutableListOf<ImageView>()
     private val directNestedTextViews = mutableListOf<TextView>()
-    private val contextComponents = mutableListOf<ContextData>()
     var observer: Observer<AsyncActionStatus>? = null
     private var isRecycled = false
 
@@ -114,16 +113,6 @@ internal class ListViewHolder(
         position: Int,
         recyclerId: Int
     ) {
-        // Clear references to context components
-        contextComponents.clear()
-        // We check if its holder has been recycled and update its references
-        val newTemplate = if (isRecycled) {
-            serializer.deserializeComponent(jsonTemplate)
-        } else {
-            template
-        }
-        // Using a new template reference we populate the components with context
-        initializeContextComponents(newTemplate)
         // Checks whether views with ids and context have been updated based on the key and updates or restore them
         if (listItem.firstTimeBinding) {
             // Generates an suffix identifier based on the parent's suffix, key and item position
@@ -156,19 +145,22 @@ internal class ListViewHolder(
         listItem.firstTimeBinding = false
     }
 
-    private fun initializeContextComponents(component: ServerDrivenComponent) {
+    private fun getContextsFromTemplate(component: ServerDrivenComponent): List<ContextData> {
+        val contexts = mutableListOf<ContextData>()
         (component as? ContextComponent)?.let {
             component.context?.let {
-                contextComponents.add(it)
+                contexts.add(it)
             }
         }
         if (component is SingleChildComponent) {
-            initializeContextComponents(component.child)
+            contexts.addAll(getContextsFromTemplate(component.child))
         } else if (component is MultiChildComponent) {
             component.children.forEach { child ->
-                initializeContextComponents(child)
+                contexts.addAll(getContextsFromTemplate(child))
             }
         }
+
+        return contexts
     }
 
     private fun generateItemSuffix(
@@ -211,7 +203,7 @@ internal class ListViewHolder(
         position: Int,
         recyclerId: Int
     ) {
-        val itemViewId = bindIdToViewModel(itemView, isRecycled, position, recyclerId)
+        val itemViewId = bindIdToViewModel(position, recyclerId)
         setUpdatedIdToViewAndManagers(itemView, itemViewId, listItem, isRecycled)
 
         viewsWithId.forEach { (id, view) ->
@@ -223,14 +215,14 @@ internal class ListViewHolder(
 
         val viewsWithContextAndWithoutId = viewsWithContext.filterNot { viewsWithId.containsValue(it) }
         viewsWithContextAndWithoutId.forEach { view ->
-            val subViewId = bindIdToViewModel(view, isRecycled, position, recyclerId)
+            val subViewId = bindIdToViewModel(position, recyclerId)
             setUpdatedIdToViewAndManagers(view, subViewId, listItem, isRecycled)
         }
 
         val viewsWithOnInitAndWithoutIdAndContext =
             viewsWithOnInit.filterNot { viewsWithId.containsValue(it) || viewsWithContext.contains(it) }
         viewsWithOnInitAndWithoutIdAndContext.forEach { view ->
-            val subViewId = bindIdToViewModel(view, isRecycled, position, recyclerId)
+            val subViewId = bindIdToViewModel(position, recyclerId)
             setUpdatedIdToViewAndManagers(view, subViewId, listItem, isRecycled)
         }
 
@@ -241,12 +233,12 @@ internal class ListViewHolder(
                     viewsWithOnInit.contains(it)
             }
             .forEach { innerRecyclerWithoutId ->
-                val subViewId = bindIdToViewModel(innerRecyclerWithoutId, isRecycled, position, recyclerId)
+                val subViewId = bindIdToViewModel(position, recyclerId)
                 setUpdatedIdToViewAndManagers(innerRecyclerWithoutId, subViewId, listItem, isRecycled)
             }
     }
 
-    private fun bindIdToViewModel(view: View, isRecycled: Boolean, position: Int, recyclerId: Int): Int {
+    private fun bindIdToViewModel(position: Int, recyclerId: Int): Int {
         return listViewModels.listViewIdViewModel.getViewId(recyclerId, position)
     }
 
@@ -269,11 +261,33 @@ internal class ListViewHolder(
     }
 
     private fun setDefaultContextToEachContextView() {
+        /*/ Clear references to context components
+contextComponents.clear()
+// We check if its holder has been recycled and update its references
+val newTemplate = if (isRecycled) {
+    serializer.deserializeComponent(jsonTemplate)
+} else {
+    template
+}
+// Using a new template reference we populate the components with context
+initializeContextComponents(newTemplate)*/
+
+        val template = serializer.deserializeComponent(jsonTemplate)
+        val contexts = getContextsFromTemplate(template)
         viewsWithContext.forEach { view ->
-            val contextInManager = listViewModels.contextViewModel.getContextData(view)
+            /*val contextInManager = listViewModels.contextViewModel.getContextData(view)
             val savedContext = contextComponents.firstOrNull { it.id == view.getContextData()?.id }
             val contextToUseAsDefault = contextInManager ?: savedContext
             contextToUseAsDefault?.let { contextDefault ->
+                listViewModels.contextViewModel.addContext(
+                    view,
+                    contextDefault,
+                    shouldOverrideExistingContext = true
+                )
+            }*/
+
+            val contextToUse = contexts.firstOrNull { it.id == view.getContextData()?.id }
+            contextToUse?.let { contextDefault ->
                 listViewModels.contextViewModel.addContext(
                     view,
                     contextDefault,
