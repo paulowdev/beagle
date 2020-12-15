@@ -27,7 +27,7 @@ public enum Navigate: RawAction {
     case resetApplication(Route, controllerId: String? = nil)
     
     /// Resets the views stack to create a new flow with the passed route.
-    case resetStack(Route)
+    case resetStack(Route, controllerId: String? = nil)
     
     /// Presents a new screen that comes from a specified route starting a new flow.
     /// You can specify a controllerId, describing the id of navigation controller used for the new flow.

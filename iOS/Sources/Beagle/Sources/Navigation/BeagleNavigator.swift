@@ -75,8 +75,15 @@ class BeagleNavigator: BeagleNavigation {
             ) { [weak self] origin, destination, animated in
                 self?.resetApplication(origin: origin, destination: destination, controllerId: controllerId, animated: animated)
             }
-        case let .resetStack(route):
-            navigate(route: route, controller: controller, animated: animated, origin: origin, transition: resetStack(origin:destination:animated:))
+        case let .resetStack(route, controllerId):
+            navigate(
+                route: route,
+                controller: controller,
+                animated: animated,
+                origin: origin
+            ) { [weak self] origin, destination, animated in
+                self?.resetStack(origin: origin, destination: destination, controllerId: controllerId, animated: animated)
+            }
         case let .pushView(route):
             navigate(route: route, controller: controller, animated: animated, origin: origin, transition: pushView(origin:destination:animated:))
         case .popView:
@@ -168,8 +175,18 @@ class BeagleNavigator: BeagleNavigation {
         origin.dependencies.windowManager.window?.replace(rootViewController: navigation, animated: animated, completion: nil)
     }
     
-    private func resetStack(origin: BeagleController, destination: UIViewController, animated: Bool) {
-        origin.navigationController?.setViewControllers([destination], animated: animated)
+    private func resetStack(origin: BeagleController, destination: UIViewController, controllerId: String?, animated: Bool) {
+        guard let presentingViewController = origin.presentingViewController else {
+            resetApplication(origin: origin, destination: destination, controllerId: controllerId, animated: animated)
+            return
+        }
+        
+        let navigationToPresent = navigationController(forId: controllerId)
+        navigationToPresent.viewControllers = [destination]
+        
+        origin.dismiss(animated: false, completion: {
+            presentingViewController.present(navigationToPresent, animated: false)
+        })
     }
     
     private func pushView(origin: BeagleController, destination: UIViewController, animated: Bool) {

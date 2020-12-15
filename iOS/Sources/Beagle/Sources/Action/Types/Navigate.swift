@@ -28,7 +28,7 @@ extension Navigate {
     var newPath: Route.NewPath? {
         switch self {
         case let .resetApplication(route, _),
-             let .resetStack(route),
+             let .resetStack(route, _),
              let .pushStack(route, _),
              let .pushView(route):
             return route.path
