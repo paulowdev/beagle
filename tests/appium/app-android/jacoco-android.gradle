@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-package br.com.zup.beagle.cucumber.steps
+apply plugin: 'com.hiya.jacoco-android'
 
-import io.cucumber.junit.Cucumber
-import io.cucumber.junit.CucumberOptions
-import org.junit.runner.RunWith
+jacoco {
+    toolVersion = '0.8.5'
+}
 
-/**
- * Used for debugging since cucumber task in gradle.build won't hit breakpoints.
- * Must be in the steps folder
- */
-@RunWith(Cucumber::class)
-@CucumberOptions(
-    /**
-     * running all tests on Android: "@android and not @inProgress"
-     * running all tests on iOS: "@ios and not @inProgress"
-     */
-    tags = "@analytics2.0 and not @inProgress",
-    features = ["src/test/resources/features"],
-    plugin = ["br.com.zup.beagle.setup.SuiteSetupPlugin"]
-)
-class Runner {
+jacocoAndroidUnitTestReport {
+
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    jacoco.includeNoLocationClasses = true
 }
