@@ -16,8 +16,18 @@
 
 package br.com.zup.beagle.analytics2
 
-data class ActionAnalyticsConfig(
-    var enable: Boolean = false,
-    var attributes: List<String>? = null,
-    var additionalEntries: Map<String, Any>? = null
-)
+sealed class ActionAnalyticsConfig(var value: Any = true) {
+
+    class Disabled() : ActionAnalyticsConfig(false)
+
+    class Enabled(val test: Configuration? = null) : ActionAnalyticsConfig() {
+        init {
+            test?.let {
+                value = it
+            }
+        }
+    }
+
+}
+
+data class Configuration(val test: String)

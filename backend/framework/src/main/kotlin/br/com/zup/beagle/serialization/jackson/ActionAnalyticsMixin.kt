@@ -17,10 +17,8 @@
 package br.com.zup.beagle.serialization.jackson
 
 import com.fasterxml.jackson.annotation.JsonValue
-import javax.lang.model.type.NullType
 
-internal object BindMixin {
+internal object ActionAnalyticsMixin {
     @get:JsonValue
     val value: Any = this
-
 }
